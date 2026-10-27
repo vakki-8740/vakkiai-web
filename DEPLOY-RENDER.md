@@ -2,7 +2,7 @@
 
 Ye guide **Xiaomi Pad 8 / Redmi Android tablet** jaise device ke liye hai. Isme Windows PC ki zarurat nahi. Bas Chrome browser, GitHub account, Render account aur OpenRouter API key chahiye.
 
-> **Note:** Is chat environment me Render aur GitHub connectors available nahi hain. Isliye main yahan se direct repo create/deploy nahi kar sakta. Mainne poora deploy-ready code taiyar kar diya hai; neeche ke steps aap tablet par follow karo.
+> **Update (27 Oct 2026):** GitHub par code push ho chuka hai — repo: <https://github.com/vakki-8740/vakkiai-web>, branch `main`. Ab aapko files manually upload karne ki zarurat nahi. Render connector is chat me available nahi hai, isliye actual Render service aapko apne Render account se create karni hogi. Neeche **Section C** me direct deploy link bhi diya hai.
 
 ---
 
@@ -10,8 +10,8 @@ Ye guide **Xiaomi Pad 8 / Redmi Android tablet** jaise device ke liye hai. Isme 
 
 1. **OpenRouter API key** lo: <https://openrouter.ai/settings/keys>
 2. Key ko kisi safe jagah note karo. **Use chat/WhatsApp me share mat karo.**
-3. `VakkiAI-Web-Render-Deploy.zip` download karo aur tablet me extract karo.
-   - `Files by Google`, `ZArchiver`, ya koi bhi file manager use kar sakte ho.
+3. **Is repo ke liye ZIP download karne ki zarurat nahi** — code GitHub par already hai. Agar aap kisi doosre platform par manually upload karna chahte ho, tab `VakkiAI-Web-Render-Deploy.zip` use karo:
+   - `Files by Google`, `ZArchiver`, ya koi bhi file manager se extract kar sakte ho.
 4. Extract hone ke baad folder me ye dikhenge:
    ```text
    app.py
@@ -28,24 +28,38 @@ Ye guide **Xiaomi Pad 8 / Redmi Android tablet** jaise device ke liye hai. Isme 
 
 ---
 
-## B. GitHub repo banao (tablet Chrome se)
+## B. GitHub repo — already ready ✅
 
-1. Chrome me kholo: <https://github.com/new>
-2. **Repository name:** `vakkiai-web`
-3. **Public** select karo.
-4. **Add a README file** optional hai; agar select kiya to baad me overwrite ho jayega.
-5. **Create repository** dabao.
-6. Repo ke andar **Add file → Upload files** par jao.
-7. Extract kiye hue folder ke **saare files aur folders** select karke upload karo.
-   - Important: `backend/` aur `frontend/` folders ke andar ka content bhi upload ho.
-   - `render.yaml` root par hona chahiye.
-8. Neeche **Commit changes** dabao.
+1. Chrome me kholo: <https://github.com/vakki-8740/vakkiai-web>
+2. Upar branch `main` select ho.
+3. Ye files/folders dikhne chahiye:
+   ```text
+   app.py
+   render.yaml
+   Procfile
+   requirements.txt
+   requirements-dev.txt
+   README.md
+   DEPLOY-RENDER.md
+   backend/
+   frontend/
+   tests/
+   .env.example
+   .gitignore
+   .python-version
+   ```
+4. **Kuch upload/commit karne ki zarurat nahi.** Seedha Section C par jao.
 
-Agar mobile browser me folder upload problematic lage, to `frontend/` aur `backend/` ke files ko ek-ek karke upload karo. GitHub web UI hidden files bhi allow karta hai, par deployment ke liye unki zarurat nahi.
+Agar aap apni alag copy banana chahte ho, to GitHub par **Fork** dabao, ya naya repo bana kar `VakkiAI-Web-Render-Deploy.zip` ke contents upload karo.
 
 ---
 
 ## C. Render par Blueprint deploy karo
+
+**Shortcut:** [Deploy to Render from this repo](https://render.com/deploy?repo=https://github.com/vakki-8740/vakkiai-web&branch=main)  
+Ya dashboard link: [Render Blueprint — New](https://dashboard.render.com/blueprint/new?repo=https://github.com/vakki-8740/vakkiai-web)
+
+Is link par Render `render.yaml` automatically read karega. Baaki manual steps neeche hain agar link kaam na kare.
 
 1. Chrome me kholo: <https://dashboard.render.com/>
 2. Sign in / sign up karo.

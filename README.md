@@ -4,6 +4,13 @@ Ye **Android tablet / mobile browser** ke liye bana hua live web version hai. Is
 
 > Ye `VakkiAI.zip` wale Windows desktop project ka replacement hai, usi ka upgraded web avatar. Desktop zip ab bhi reference ke liye hai, par live hosting ke liye **yahin wala project** use karo.
 
+**Current repo:** <https://github.com/vakki-8740/vakkiai-web> — code `main` branch par already hai.
+
+**Quick Render deploy:** [Deploy this repo to Render](https://render.com/deploy?repo=https://github.com/vakki-8740/vakkiai-web&branch=main)  
+(Alternate: [Render Blueprint Dashboard](https://dashboard.render.com/blueprint/new?repo=https://github.com/vakki-8740/vakkiai-web))
+
+> Render sign-in aur `OPENROUTER_API_KEY` enter karna abhi bhi aapko apne Render Dashboard me karna hoga. Key kabhi chat ya Git me share mat karo.
+
 ---
 
 ## 1. Architecture

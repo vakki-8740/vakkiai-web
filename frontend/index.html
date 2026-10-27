@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="description" content="VakkiAI Web — mobile-friendly AI assistant with text and voice input.">
+  <title>VakkiAI Web — Live AI Assistant</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">V</span>
+      <div>
+        <div class="brand-line">
+          <h1>VakkiAI</h1>
+          <span class="live-badge">LIVE</span>
+        </div>
+        <p class="tagline">AI assistant for your tablet</p>
+      </div>
+    </div>
+    <div class="status" aria-live="polite">
+      <span id="statusDot" class="status-dot ok" aria-hidden="true"></span>
+      <span id="statusText">Starting…</span>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="card intro-card">
+      <div>
+        <h2>Namaste 👋</h2>
+        <p class="muted">
+          Command type karo ya mic dabao. AI response yahin dikhega. Notes aapke tablet me
+          save/download hote hain — server par permanent database nahi hai.
+        </p>
+      </div>
+      <div class="chips" aria-label="Features">
+        <span class="chip">Text</span>
+        <span class="chip">Voice</span>
+        <span class="chip">Notes</span>
+        <span class="chip">Safe</span>
+      </div>
+    </section>
+
+    <section id="configWarning" class="card warning-card" hidden>
+      <strong>API key missing.</strong>
+      <span>Render service ke Environment settings me <code>OPENROUTER_API_KEY</code> add karo.</span>
+    </section>
+
+    <section class="card chat-card" aria-label="Conversation">
+      <div class="card-title-row">
+        <h2>Conversation</h2>
+        <span id="offlineBadge" class="offline-badge" hidden>Offline</span>
+      </div>
+      <div id="chat" class="chat" role="log" aria-live="polite" aria-relevant="additions"></div>
+    </section>
+
+    <section class="card composer-card">
+      <label for="command"><strong>Your command</strong></label>
+      <textarea id="command" rows="3" maxlength="4000" placeholder="Example: Admin Panel ke features ki notes banao…"></textarea>
+      <div class="meta-row">
+        <span id="charCount" class="muted small">0 / 4000</span>
+        <span id="voiceSupport" class="muted small">Checking voice support…</span>
+      </div>
+
+      <div class="button-grid">
+        <button id="sendBtn" class="btn primary" type="button">Send</button>
+        <button id="voiceStartBtn" class="btn" type="button">🎤 Start voice</button>
+        <button id="voiceStopBtn" class="btn" type="button" disabled>⏹ Stop voice</button>
+        <button id="cancelBtn" class="btn ghost" type="button" disabled>Cancel</button>
+        <button id="clearBtn" class="btn ghost" type="button">Clear</button>
+      </div>
+
+      <div class="field-row">
+        <label for="language">Voice language</label>
+        <select id="language">
+          <option value="hi-IN">Hindi (India)</option>
+          <option value="en-IN">English (India)</option>
+          <option value="en-US">English (US)</option>
+        </select>
+      </div>
+      <p class="hint">
+        Voice ke liye Chrome/Edge, HTTPS, microphone permission aur internet chahiye.
+        Agar voice kaam na kare to text input use karo.
+      </p>
+    </section>
+
+    <section id="notesPanel" class="card notes-card" hidden>
+      <div class="card-title-row">
+        <h2>Notes</h2>
+        <span class="chip">Local</span>
+      </div>
+      <pre id="notesText" class="notes-preview"></pre>
+      <div class="field-row">
+        <label for="noteFilename">Filename</label>
+        <input id="noteFilename" type="text" value="admin_panel_notes.md" maxlength="100" autocomplete="off">
+      </div>
+      <div class="button-grid">
+        <button id="saveNoteBtn" class="btn" type="button">Save on tablet</button>
+        <button id="downloadNoteBtn" class="btn primary" type="button">Download .md</button>
+      </div>
+      <div class="saved-notes-wrap">
+        <h3>Saved on this tablet</h3>
+        <div id="savedNotes" class="saved-notes"></div>
+      </div>
+    </section>
+
+    <details class="card settings-card">
+      <summary><strong>Backend settings</strong> <span class="muted small">(for separate hosting)</span></summary>
+      <p class="hint">
+        Agar frontend aur backend alag platforms par host ho rahe hain, to yahan Render backend
+        ka URL daalo. Same Render service use kar rahe ho to input khali chhodo.
+      </p>
+      <div class="field-row stacked">
+        <label for="apiBaseInput">Backend URL</label>
+        <input id="apiBaseInput" type="url" inputmode="url" placeholder="https://your-service.onrender.com" autocomplete="off">
+      </div>
+      <div class="button-grid">
+        <button id="saveApiBtn" class="btn" type="button">Save URL</button>
+        <button id="resetApiBtn" class="btn ghost" type="button">Use same domain</button>
+      </div>
+      <p id="apiStatus" class="hint" aria-live="polite"></p>
+    </details>
+  </main>
+
+  <footer class="footer">
+    <span>VakkiAI Web • API key server-side • Notes stay on your device</span>
+    <span id="footerMode">Live mode</span>
+  </footer>
+
+  <noscript>
+    <div class="noscript">JavaScript enable karo; VakkiAI Web browser me JavaScript se chalta hai.</div>
+  </noscript>
+
+  <script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

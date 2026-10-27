@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: vakkiai-web
+    runtime: python
+    plan: free
+    region: oregon
+    numInstances: 1
+    healthCheckPath: /health
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 120
+    envVars:
+      # Secret ka value file me nahi hai. Render initial Blueprint creation par prompt karega.
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: "3.12"
+      - key: OPENROUTER_MODEL
+        value: openai/gpt-4o-mini
+      - key: VAKKIAI_DEFAULT_LANGUAGE
+        value: hi-IN
+      - key: VAKKIAI_ALLOWED_ORIGINS
+        value: "*"
+      - key: VAKKIAI_RATE_LIMIT_PER_MINUTE
+        value: "20"
+      - key: VAKKIAI_CONNECT_TIMEOUT
+        value: "10"
+      - key: VAKKIAI_READ_TIMEOUT
+        value: "60"
+      - key: WEB_CONCURRENCY
+        value: "1"

@@ -1,0 +1,7 @@
+# Runtime dependencies for VakkiAI Web on Render.
+# No Windows-only packages: Tkinter, PyAudio, PyAutoGUI, pyperclip, Notepad.
+Flask>=3.0,<4
+flask-cors>=5.0,<7
+requests>=2.32.3,<3
+python-dotenv>=1.0.1,<2
+gunicorn>=22,<24
